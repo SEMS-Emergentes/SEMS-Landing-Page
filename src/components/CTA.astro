@@ -1,0 +1,27 @@
+---
+import { messages } from "../i18n";
+const t = messages.es;
+---
+
+<section class="relative py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="reveal relative overflow-hidden rounded-[1.75rem] bg-blue-600 px-8 py-14 text-center lg:px-16 lg:py-20">
+      <div class="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
+      <div class="absolute -top-16 left-1/2 h-56 w-[500px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"></div>
+
+      <div class="relative">
+        <h2 class="mx-auto max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl" data-i18n="cta.title">{t["cta.title"]}</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg text-blue-50/90" data-i18n="cta.sub">{t["cta.sub"]}</p>
+
+        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href="https://sems-application-web.vercel.app/login" data-i18n="cta.b1" class="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-700 shadow-lg shadow-blue-900/20 transition-all hover:bg-blue-50">
+            {t["cta.b1"]}
+          </a>
+          <a href="#como-funciona" data-i18n="cta.b2" class="inline-flex items-center justify-center rounded-full border border-white/40 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10">
+            {t["cta.b2"]}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

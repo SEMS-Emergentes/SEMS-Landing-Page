@@ -1,0 +1,22 @@
+---
+import { messages } from "../i18n";
+const t = messages.es;
+
+const stats = [
+  { v: "stat1.v", l: "stat1.l" },
+  { v: "stat2.v", l: "stat2.l" },
+  { v: "stat3.v", l: "stat3.l" },
+  { v: "stat4.v", l: "stat4.l" },
+];
+---
+
+<section class="relative border-y border-slate-200 bg-slate-50 dark:border-navy-800 dark:bg-navy-900/40">
+  <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-slate-200 px-5 lg:grid-cols-4 lg:px-8 dark:divide-navy-800">
+    {stats.map((s) => (
+      <div class="reveal px-4 py-8 text-center lg:py-10">
+        <p class="font-display text-2xl font-extrabold text-blue-600 lg:text-3xl dark:text-blue-400" data-i18n={s.v}>{t[s.v]}</p>
+        <p class="mt-2 text-xs leading-snug text-slate-500 lg:text-sm dark:text-slate-400" data-i18n={s.l}>{t[s.l]}</p>
+      </div>
+    ))}
+  </div>
+</section>

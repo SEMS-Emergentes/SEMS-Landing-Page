@@ -1,0 +1,87 @@
+---
+import { messages } from "../i18n";
+const t = messages.es;
+
+const bars = [38, 52, 44, 68, 60, 82, 74, 91, 70, 58, 64, 48];
+const devices = [
+  { key: "mock.d1", pct: 34, kwh: "2.4", color: "bg-rose-400" },
+  { key: "mock.d2", pct: 22, kwh: "1.6", color: "bg-amber-400" },
+  { key: "mock.d3", pct: 18, kwh: "1.3", color: "bg-sky-400" },
+  { key: "mock.d4", pct: 26, kwh: "1.9", color: "bg-blue-500" },
+];
+---
+
+<div class="relative">
+  <div class="absolute -inset-5 rounded-[1.75rem] bg-gradient-to-tr from-blue-400/15 via-transparent to-sky-300/20 blur-2xl dark:from-blue-600/15 dark:to-blue-500/10"></div>
+
+  <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-300/30 animate-float dark:border-navy-800 dark:bg-navy-900 dark:shadow-black/40">
+    <!-- Barra superior -->
+    <div class="flex items-center justify-between border-b border-slate-100 px-5 py-3.5 dark:border-navy-800">
+      <div class="flex items-center gap-2">
+        <span class="h-2.5 w-2.5 rounded-full bg-rose-300"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-amber-300"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+      </div>
+      <span class="text-xs font-medium text-slate-400">panel.sems.pe</span>
+      <span class="flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400">
+        <span class="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-blue-500"></span>
+        <span data-i18n="mock.live">{t["mock.live"]}</span>
+      </span>
+    </div>
+
+    <div class="space-y-5 p-5">
+      <!-- KPI: ahorro -->
+      <div class="rounded-xl bg-gradient-to-br from-blue-50 to-sky-50 p-5 dark:from-blue-600/15 dark:to-navy-850">
+        <p class="text-xs font-medium text-blue-700/80 dark:text-blue-200/80" data-i18n="mock.saveLabel">{t["mock.saveLabel"]}</p>
+        <div class="mt-1 flex items-end gap-2">
+          <span class="font-display text-4xl font-extrabold text-slate-900 dark:text-white">S/ 86.40</span>
+          <span class="mb-1 flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 15 6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            21%
+          </span>
+        </div>
+        <p class="mt-1 text-xs text-slate-400" data-i18n="mock.saveNote">{t["mock.saveNote"]}</p>
+      </div>
+
+      <!-- Gráfico -->
+      <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4 dark:border-navy-800 dark:bg-navy-850/50">
+        <div class="mb-3 flex items-center justify-between">
+          <p class="text-xs font-semibold text-slate-600 dark:text-slate-300" data-i18n="mock.chartTitle">{t["mock.chartTitle"]}</p>
+          <p class="text-xs text-slate-400" data-i18n="mock.chartSub">{t["mock.chartSub"]}</p>
+        </div>
+        <div class="flex h-24 items-end gap-1.5">
+          {bars.map((h) => (
+            <div class="flex-1 rounded-t bg-gradient-to-t from-blue-600 to-sky-400" style={`height: ${h}%`}></div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Por dispositivo -->
+      <div class="space-y-2.5">
+        {devices.map((d) => (
+          <div class="flex items-center gap-3">
+            <span class={`h-2.5 w-2.5 shrink-0 rounded-full ${d.color}`}></span>
+            <span class="w-36 shrink-0 truncate text-xs text-slate-600 dark:text-slate-300" data-i18n={d.key}>{t[d.key]}</span>
+            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-navy-800">
+              <div class={`h-full rounded-full ${d.color}`} style={`width: ${d.pct}%`}></div>
+            </div>
+            <span class="w-10 shrink-0 text-right text-xs font-medium text-slate-400">{d.kwh}k</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Alerta flotante -->
+  <div class="absolute -bottom-6 -left-5 hidden w-60 rounded-xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-300/40 sm:block dark:border-navy-800 dark:bg-navy-850 dark:shadow-black/40">
+    <div class="flex items-start gap-3">
+      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100 dark:bg-amber-400/15">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div>
+        <p class="text-xs font-semibold text-slate-900 dark:text-white" data-i18n="mock.alertTitle">{t["mock.alertTitle"]}</p>
+        <p class="mt-0.5 text-[11px] leading-snug text-slate-500 dark:text-slate-400" data-i18n="mock.alertBody">{t["mock.alertBody"]}</p>
+      </div>
+    </div>
+  </div>
+</div>

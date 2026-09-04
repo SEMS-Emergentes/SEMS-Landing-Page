@@ -1,0 +1,134 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "SEMS — Gasta menos luz, sin adivinar",
+  description = "SEMS mide el consumo eléctrico de tu casa en tiempo real, te dice en soles qué equipo gasta más y te ayuda a reducir tu recibo hasta un 30%. Un producto de Energix.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1224" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_PE" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Evita el parpadeo de tema antes del primer render -->
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem("sems-theme") || "light";
+          if (theme === "dark") document.documentElement.classList.add("dark");
+          var lang = localStorage.getItem("sems-lang");
+          if (lang) document.documentElement.lang = lang;
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white text-slate-700 transition-colors duration-300 dark:bg-navy-950 dark:text-slate-300">
+    <slot />
+
+    <script>
+      import { messages } from "../i18n";
+
+      // ---------- Idioma ----------
+      function applyLang(lang: string) {
+        const dict = messages[lang] ?? messages.es;
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (key && dict[key] != null) el.textContent = dict[key];
+        });
+
+        if (dict["meta.title"]) document.title = dict["meta.title"];
+
+        // El botón muestra el idioma al que se cambiará
+        document.querySelectorAll<HTMLElement>("[data-lang-label]").forEach((el) => {
+          el.textContent = lang === "es" ? "EN" : "ES";
+        });
+
+        try {
+          localStorage.setItem("sems-lang", lang);
+        } catch (e) {}
+      }
+
+      let currentLang = (() => {
+        try {
+          return localStorage.getItem("sems-lang") || "es";
+        } catch (e) {
+          return "es";
+        }
+      })();
+
+      // Solo reemplazamos el DOM si arranca en inglés (el HTML viene en español)
+      if (currentLang === "en") applyLang("en");
+      else {
+        document.querySelectorAll<HTMLElement>("[data-lang-label]").forEach((el) => {
+          el.textContent = "EN";
+        });
+      }
+
+      document.querySelectorAll<HTMLElement>(".lang-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          currentLang = currentLang === "es" ? "en" : "es";
+          applyLang(currentLang);
+        });
+      });
+
+      // ---------- Tema ----------
+      function applyTheme(theme: string) {
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        try {
+          localStorage.setItem("sems-theme", theme);
+        } catch (e) {}
+      }
+
+      document.querySelectorAll<HTMLElement>(".theme-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const isDark = document.documentElement.classList.contains("dark");
+          applyTheme(isDark ? "light" : "dark");
+        });
+      });
+
+      // ---------- Aparición al hacer scroll ----------
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

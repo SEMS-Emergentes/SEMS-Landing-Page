@@ -1,0 +1,18 @@
+{
+  "name": "sems-landing-page",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Landing page de SEMS — Smart Energy Management System (Energix)",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.7.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}
