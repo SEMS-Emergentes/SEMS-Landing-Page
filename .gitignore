@@ -1,25 +1,7 @@
-# build output
-dist/
-.output/
-
-# dependencies
-node_modules/
-
-# astro
-.astro/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment
-.env
-.env.production
-
-# os / editor
+# The landing page has no build step and no dependencies, so there is nothing
+# generated to ignore. These entries only keep editor and OS noise out.
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+*.log

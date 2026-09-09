@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!--
+  SEMS — Landing Page
+  HTML5 + CSS3 + JavaScript, with no framework and no build step.
+
+  Default language is English (en-US), as required for every product of the
+  solution. Latin American Spanish (es-419) is offered through the language
+  switch in the header; the dictionary lives in assets/js/i18n.js and every
+  translatable string is marked with data-i18n.
+-->
+<html lang="en-US" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title data-i18n="meta.title">SEMS — Stop paying for demand peaks you never saw</title>
+  <meta name="description" data-i18n-attr="content" data-i18n="meta.description"
+        content="SEMS measures the electricity of supermarkets, stores and retail chains in real time, breaks consumption down by site and zone, and warns you before a demand peak raises your bill. A product by Energix.">
+
+  <meta name="theme-color" content="#fdfcff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SEMS — Smart Energy Management System">
+  <meta property="og:description" content="Real-time electricity monitoring for commercial establishments in Peru.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_419">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Roboto is the Material Design type family. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Applies the stored theme before the first paint so the page never flashes. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("sems-theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+        var l = localStorage.getItem("sems-lang");
+        if (l) document.documentElement.lang = l;
+      } catch (e) { /* private mode: keep the defaults */ }
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+
+  <!-- =============================================================== header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="SEMS — home">
+        <span class="brand-mark" aria-hidden="true">⚡</span>
+        <span>SEMS</span>
+      </a>
+
+      <button class="icon-btn nav-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="primaryNav"
+              aria-label="Open navigation menu" data-i18n-attr="aria-label" data-i18n="a11y.menu">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Main" data-i18n-attr="aria-label" data-i18n="a11y.nav">
+        <ul>
+          <li><a href="#how"      data-i18n="nav.how">How it works</a></li>
+          <li><a href="#features" data-i18n="nav.features">Features</a></li>
+          <li><a href="#segments" data-i18n="nav.who">Who it is for</a></li>
+          <li><a href="#pricing"  data-i18n="nav.plans">Plans</a></li>
+          <li><a href="#faq"      data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="langToggle" type="button"
+                aria-label="Switch language to Spanish"
+                data-i18n-attr="aria-label" data-i18n="a11y.lang">
+          <span aria-hidden="true">🌐</span><span data-lang-label>ES</span>
+        </button>
+
+        <button class="icon-btn" id="themeToggle" type="button"
+                aria-pressed="false"
+                aria-label="Switch to dark theme"
+                data-i18n-attr="aria-label" data-i18n="a11y.theme">
+          <span aria-hidden="true" data-theme-icon>🌙</span>
+        </button>
+
+        <a class="btn btn-filled" data-app-link="/register" href="#"
+           data-i18n="nav.cta">Start free</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================================================== hero -->
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="container hero-grid">
+        <div>
+          <p class="hero-badge">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-i18n="hero.badge">Real-time monitoring · Peak-demand alerts</span>
+          </p>
+
+          <h1 id="heroTitle">
+            <span data-i18n="hero.title.a">Stop paying for demand peaks</span>
+            <span class="accent" data-i18n="hero.title.b">you never saw coming.</span>
+          </h1>
+
+          <p class="lead" data-i18n="hero.sub">
+            SEMS measures the electricity of your supermarket, store or chain in real
+            time, shows which zone and which equipment is spending, and warns you
+            before a peak locks an excess-power charge into the whole month.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-filled" data-app-link="/register" href="#" data-i18n="hero.cta1">Start free</a>
+            <a class="btn btn-outlined" href="#how" data-i18n="hero.cta2">See how it works</a>
+          </div>
+
+          <ul class="hero-points">
+            <li><span class="check" aria-hidden="true">✓</span><span data-i18n="hero.p1">No electrical engineering needed</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span data-i18n="hero.p2">Works with your existing meters</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span data-i18n="hero.p3">One free site, no card required</span></li>
+          </ul>
+        </div>
+
+        <!-- Illustrative product preview. Decorative for assistive tech: the
+             same information is written out in the sections below. -->
+        <div class="mock" role="img"
+             aria-label="Preview of the SEMS dashboard showing estimated savings, daily consumption and a demand alert"
+             data-i18n-attr="aria-label" data-i18n="a11y.mock">
+          <div class="mock-bar">
+            <span class="mock-live"><span class="dot" aria-hidden="true"></span><span data-i18n="mock.live">LIVE</span></span>
+            <span class="mock-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          </div>
+
+          <div class="mock-figure">
+            <p class="mock-label" data-i18n="mock.saveLabel">Estimated saving this month</p>
+            <p class="mock-amount">S/ 4,820</p>
+            <p class="mock-label" data-i18n="mock.saveNote">vs. your average of the last 3 months</p>
+
+            <div class="mock-chart" aria-hidden="true">
+              <span style="height:42%"></span><span style="height:58%"></span>
+              <span style="height:49%"></span><span style="height:71%"></span>
+              <span style="height:63%"></span><span style="height:88%"></span>
+              <span style="height:54%"></span><span style="height:67%"></span>
+              <span style="height:45%"></span><span style="height:79%"></span>
+              <span style="height:60%"></span><span style="height:52%"></span>
+            </div>
+          </div>
+
+          <ul class="mock-list">
+            <li><span data-i18n="mock.d1">Refrigeration</span><b>38%</b></li>
+            <li><span data-i18n="mock.d2">HVAC</span><b>27%</b></li>
+            <li><span data-i18n="mock.d3">Lighting</span><b>19%</b></li>
+            <li><span data-i18n="mock.d4">Other equipment</span><b>16%</b></li>
+          </ul>
+
+          <div class="mock-alert">
+            <span aria-hidden="true">⚠</span>
+            <div>
+              <strong data-i18n="mock.alertTitle">Demand close to the contracted limit</strong>
+              <p data-i18n="mock.alertBody">238 kW of 250 kW contracted. 12 kW of headroom left.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= stats -->
+    <section class="stats" aria-labelledby="statsTitle">
+      <div class="container">
+        <h2 id="statsTitle" class="sr-only" data-i18n="stats.title">Key figures</h2>
+        <div class="stats-grid">
+          <div>
+            <span class="stat-value" data-i18n="stat1.v">17.18%</span>
+            <p class="stat-label" data-i18n="stat1.l">of the electricity sold in Peru goes to the commercial sector</p>
+            <p class="stat-source" data-i18n="stat1.s">MINEM, Electricity Statistical Yearbook 2024</p>
+          </div>
+          <div>
+            <span class="stat-value" data-i18n="stat2.v">9,157 GWh</span>
+            <p class="stat-label" data-i18n="stat2.l">consumed by commercial establishments per year</p>
+            <p class="stat-source" data-i18n="stat2.s">MINEM, Electricity Statistical Yearbook 2024</p>
+          </div>
+          <div>
+            <span class="stat-value" data-i18n="stat3.v">18:00–23:00</span>
+            <p class="stat-label" data-i18n="stat3.l">peak hours, every day of the year</p>
+            <p class="stat-source" data-i18n="stat3.s">OSINERGMIN, tariff schedule Annex B</p>
+          </div>
+          <div>
+            <span class="stat-value" data-i18n="stat4.v">1 peak</span>
+            <p class="stat-label" data-i18n="stat4.l">is enough to raise the power charge for the whole month</p>
+            <p class="stat-source" data-i18n="stat4.s">Maximum demand billing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================== problem -->
+    <section id="problem" aria-labelledby="problemTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="problem.kicker">The problem</span>
+          <h2 id="problemTitle" data-i18n="problem.title">Your bill arrives already decided</h2>
+          <p class="lead" data-i18n="problem.sub">
+            A commercial tariff charges energy by time band and adds a power charge
+            set by the single highest peak of the month. The bill shows the result,
+            never the cause.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">⏱</div>
+            <h3 data-i18n="problem.p1t">You find out thirty days late</h3>
+            <p data-i18n="problem.p1d">The peak that sets your power charge may last fifteen minutes. You learn about it when the bill arrives and the surcharge is already applied.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🏬</div>
+            <h3 data-i18n="problem.p2t">You cannot tell where it came from</h3>
+            <p data-i18n="problem.p2d">The bill is aggregated per supply point. It does not say whether it was refrigeration, the air conditioning or the ovens, so you do not know where to act.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🏢</div>
+            <h3 data-i18n="problem.p3t">You cannot compare your sites</h3>
+            <p data-i18n="problem.p3d">With several branches there is no simple way to tell whether one of them is spending more than the rest for its size and format.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== how -->
+    <section id="how" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="how.kicker">How it works</span>
+          <h2 id="howTitle" data-i18n="how.title">From the switchboard to the saving, in four steps</h2>
+          <p class="lead" data-i18n="how.sub">Measure, understand and act. No electrical background required.</p>
+        </div>
+
+        <ol class="card-grid steps" style="list-style:none;margin:0;padding:0">
+          <li class="card reveal">
+            <div class="step-number" aria-hidden="true">1</div>
+            <h3 data-i18n="how.s1t">Register your organization and sites</h3>
+            <p data-i18n="how.s1d">Create the chain, add each site with its tariff category and contracted power, and split it into zones.</p>
+          </li>
+          <li class="card reveal">
+            <div class="step-number" aria-hidden="true">2</div>
+            <h3 data-i18n="how.s2t">Connect the meters</h3>
+            <p data-i18n="how.s2d">Each meter is assigned to a site and, if you want, to a zone. From that moment its readings feed the platform.</p>
+          </li>
+          <li class="card reveal">
+            <div class="step-number" aria-hidden="true">3</div>
+            <h3 data-i18n="how.s3t">Watch demand in real time</h3>
+            <p data-i18n="how.s3d">SEMS compares the measured demand against your contracted power and warns you while there is still headroom left.</p>
+          </li>
+          <li class="card reveal">
+            <div class="step-number" aria-hidden="true">4</div>
+            <h3 data-i18n="how.s4t">Act before the month closes</h3>
+            <p data-i18n="how.s4d">Shift load out of peak hours, find the zone that is spending and forecast the bill before it is issued.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========================================================== features -->
+    <section id="features" aria-labelledby="featuresTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="feat.kicker">Features</span>
+          <h2 id="featuresTitle" data-i18n="feat.title">Built around the commercial tariff</h2>
+          <p class="lead" data-i18n="feat.sub">Not a generic meter: SEMS models peak hours, maximum demand and contracted power the way OSINERGMIN defines them.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">📈</div>
+            <h3 data-i18n="feat.f1t">Live demand monitoring</h3>
+            <p data-i18n="feat.f1d">Consumption per site and per zone, updated as it happens and expressed in soles, not at the end of the month.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🔔</div>
+            <h3 data-i18n="feat.f2t">Demand warning with headroom</h3>
+            <p data-i18n="feat.f2d">A warning while you are still below the contracted power, and a critical alert if you go over it. Avoiding one peak pays for the plan.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🕕</div>
+            <h3 data-i18n="feat.f3t">Peak-hour reports</h3>
+            <p data-i18n="feat.f3d">How much of your energy falls between 18:00 and 23:00, and what you would save by moving part of it out of that band.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🗺</div>
+            <h3 data-i18n="feat.f4t">Breakdown by zone</h3>
+            <p data-i18n="feat.f4d">Refrigeration, HVAC, lighting, kitchen or warehouse. See which part of the site is behind the consumption.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">🧮</div>
+            <h3 data-i18n="feat.f5t">Bill forecast</h3>
+            <p data-i18n="feat.f5d">Energy, power charge, excess power and VAT, calculated with the tariff category of each site before the month closes.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">⚖️</div>
+            <h3 data-i18n="feat.f6t">Benchmarking across sites</h3>
+            <p data-i18n="feat.f6d">Compare branches of a similar size and format, and tell a real deviation from a difference in scale.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== segments -->
+    <section class="segments" id="segments" aria-labelledby="segmentsTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="seg.kicker">Who it is for</span>
+          <h2 id="segmentsTitle" data-i18n="seg.title">Two ways of carrying the same cost</h2>
+          <p class="lead" data-i18n="seg.sub">Whether you answer for forty branches or for the only one you own, the tariff is the same. What changes is the evidence you need.</p>
+        </div>
+
+        <div class="segment-grid">
+          <article class="segment reveal">
+            <span class="segment-tag" data-i18n="seg1.tag">Retail chains</span>
+            <p class="segment-meta" data-i18n="seg1.meta">Operations and maintenance managers · 2 to 40 sites</p>
+            <h3 data-i18n="seg1.title">Prove the saving before rolling it out</h3>
+            <p data-i18n="seg1.desc">You answer to management for operating cost and have to justify every investment with a demonstrable return.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg1.p1">One dashboard for every site in the chain</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg1.p2">Roles per site, so each branch operates its own</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg1.p3">Benchmarking to find the branch that deviates</span></li>
+            </ul>
+            <a class="btn btn-filled btn-block" data-app-link="/register?segment=chain" href="#"
+               data-i18n="seg1.cta">Try it on one site</a>
+          </article>
+
+          <article class="segment reveal">
+            <span class="segment-tag" data-i18n="seg2.tag">Independent establishments</span>
+            <p class="segment-meta" data-i18n="seg2.meta">Owners and managers · a single site of 200 to 800 m²</p>
+            <h3 data-i18n="seg2.title">Know what to do, not just what is happening</h3>
+            <p data-i18n="seg2.desc">Electricity is one of your highest fixed costs and it goes up without explanation. You need an answer, not a spreadsheet.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg2.p1">Free for one site, with no card</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg2.p2">Alerts that say what to do and when</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="seg2.p3">No invasive works that stop your operation</span></li>
+            </ul>
+            <a class="btn btn-filled btn-block" data-app-link="/register?segment=single-site" href="#"
+               data-i18n="seg2.cta">Start free</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================== pricing -->
+    <section id="pricing" aria-labelledby="pricingTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="price.kicker">Plans</span>
+          <h2 id="pricingTitle" data-i18n="price.title">Priced by sites, not by meters</h2>
+          <p class="lead" data-i18n="price.sub">A supermarket has dozens of meters in a single building. What grows with your business is how many sites you manage.</p>
+        </div>
+
+        <div class="plan-grid">
+          <article class="plan reveal">
+            <h3 data-i18n="plan1.name">Starter</h3>
+            <p data-i18n="plan1.desc">One site, with the essentials to start measuring.</p>
+            <p class="plan-price">
+              <span class="plan-amount" data-i18n="plan1.price">S/ 0</span>
+              <span class="plan-period" data-i18n="plan1.period">/month</span>
+            </p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan1.f1">1 site included</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan1.f2">Up to 10 meters per site</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan1.f3">Site consumption dashboard</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan1.f4">Consumption alerts</span></li>
+            </ul>
+            <a class="btn btn-tonal btn-block" data-app-link="/register?plan=starter" href="#" data-i18n="plan1.cta">Start free</a>
+          </article>
+
+          <article class="plan featured reveal">
+            <span class="plan-flag" data-i18n="price.popular">Most chosen</span>
+            <h3 data-i18n="plan2.name">Business</h3>
+            <p data-i18n="plan2.desc">For small chains, with demand control.</p>
+            <p class="plan-price">
+              <span class="plan-amount" data-i18n="plan2.price">S/ 149</span>
+              <span class="plan-period" data-i18n="plan2.period">/month</span>
+            </p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f1">Everything in Starter</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f2">5 sites included</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f3">Up to 50 meters per site</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f4">Consumption broken down by zone</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f5">Demand warning before exceeding the contracted power</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan2.f6">Peak-hour consumption reports</span></li>
+            </ul>
+            <a class="btn btn-filled btn-block" data-app-link="/register?plan=business" href="#" data-i18n="plan2.cta">Choose Business</a>
+          </article>
+
+          <article class="plan reveal">
+            <h3 data-i18n="plan3.name">Enterprise</h3>
+            <p data-i18n="plan3.desc">Large chains, with site-to-site benchmarking.</p>
+            <p class="plan-price">
+              <span class="plan-amount" data-i18n="plan3.price">S/ 399</span>
+              <span class="plan-period" data-i18n="plan3.period">/month</span>
+            </p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan3.f1">Everything in Business</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan3.f2">Unlimited sites and meters</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan3.f3">Performance benchmarking across sites</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan3.f4">Tariff category analysis</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span data-i18n="plan3.f5">Priority support</span></li>
+            </ul>
+            <a class="btn btn-tonal btn-block" data-app-link="/register?plan=enterprise" href="#" data-i18n="plan3.cta">Talk to sales</a>
+          </article>
+        </div>
+
+        <p class="price-note" data-i18n="price.note">Prices in Peruvian soles (S/), VAT not included. You can change or cancel your plan at any time.</p>
+      </div>
+    </section>
+
+    <!-- =============================================================== faq -->
+    <section id="faq" aria-labelledby="faqTitle">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="faq.kicker">FAQ</span>
+          <h2 id="faqTitle" data-i18n="faq.title">Questions we are asked often</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq1">
+                <span data-i18n="faq.q1">Do I need to change my meters?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq1" hidden>
+              <p data-i18n="faq.a1">No. SEMS reads the measurements your meters already produce and assigns them to a site and a zone. What it adds is the reading of the commercial tariff on top of that data.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq2">
+                <span data-i18n="faq.q2">What exactly is the power charge?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq2" hidden>
+              <p data-i18n="faq.a2">A commercial tariff bills the energy you consume and, separately, the highest demand recorded during the month. That peak can last fifteen minutes and still set the charge for the whole period. If it goes above the power you contracted, an excess charge is added.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq3">
+                <span data-i18n="faq.q3">When are peak hours in Peru?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq3" hidden>
+              <p data-i18n="faq.a3">Between 18:00 and 23:00, every day of every month of the year. Sundays and holidays can be excluded, but only if the customer requests it from the distributor. SEMS supports both cases per site.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq4">
+                <span data-i18n="faq.q4">Does SEMS switch my equipment off?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq4" hidden>
+              <p data-i18n="faq.a4">No. SEMS measures, explains and warns so that your team decides. It does not control equipment and it does not pay the bill for you.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq5">
+                <span data-i18n="faq.q5">Can each branch have its own users?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq5" hidden>
+              <p data-i18n="faq.a5">Yes. An organization administrator sees the whole chain, while a supervisor or an operator is limited to the site they are assigned to.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 style="margin:0">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq6">
+                <span data-i18n="faq.q6">Is my data safe?</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq6" hidden>
+              <p data-i18n="faq.a6">Access is controlled by role and by site. Card details are entered on the payment provider's page and never reach SEMS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== cta -->
+    <section class="cta-band" aria-labelledby="ctaTitle">
+      <div class="container">
+        <div class="cta-box reveal">
+          <h2 id="ctaTitle" data-i18n="cta.title">Start with one site, at no cost</h2>
+          <p data-i18n="cta.sub">Measure a single branch, see the demand peak the day it happens and decide from there. No card required.</p>
+          <div class="cta-actions">
+            <a class="btn btn-filled" data-app-link="/register" href="#" data-i18n="cta.b1">Create my free account</a>
+            <a class="btn btn-outlined" data-app-link="/login" href="#" data-i18n="cta.b2">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =============================================================== footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="#top">
+            <span class="brand-mark" aria-hidden="true">⚡</span>
+            <span>SEMS</span>
+          </a>
+          <p data-i18n="footer.tagline">Smart Energy Management System. Measure, understand and reduce the electricity cost of your commercial establishment. A product by Energix.</p>
+        </div>
+
+        <nav aria-labelledby="footProduct">
+          <h3 id="footProduct" data-i18n="footer.colProduct">Product</h3>
+          <ul>
+            <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+            <li><a href="#features" data-i18n="nav.features">Features</a></li>
+            <li><a href="#pricing" data-i18n="nav.plans">Plans</a></li>
+            <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footCompany">
+          <h3 id="footCompany" data-i18n="footer.colCompany">Company</h3>
+          <ul>
+            <li><a href="#problem" data-i18n="footer.company1">About Energix</a></li>
+            <li><a href="#segments" data-i18n="footer.company2">Who it is for</a></li>
+            <li><a href="mailto:hello@energix.pe" data-i18n="footer.company3">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footLegal">
+          <h3 id="footLegal" data-i18n="footer.colLegal">Legal</h3>
+          <ul>
+            <li><a href="terms.html" data-i18n="footer.legal1">Terms and conditions</a></li>
+            <li><a href="terms.html#privacy" data-i18n="footer.legal2">Privacy policy</a></li>
+            <li><a href="terms.html#sla" data-i18n="footer.legal3">Service level agreement</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p style="margin:0">© <span id="year">2026</span> Energix. <span data-i18n="footer.rights">All rights reserved.</span></p>
+        <p style="margin:0" data-i18n="footer.contact">Lima, Peru · hello@energix.pe</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

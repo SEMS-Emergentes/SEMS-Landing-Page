@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+  Terms and conditions, privacy policy and service level agreement.
+  Same stack, same design language and same i18n mechanism as index.html.
+-->
+<html lang="en-US" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="legal.metaTitle">Terms and conditions — SEMS</title>
+  <meta name="description" data-i18n-attr="content" data-i18n="legal.metaDescription"
+        content="Terms and conditions, privacy policy and service level agreement for SEMS, a product by Energix.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#fdfcff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("sems-theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+        var l = localStorage.getItem("sems-lang");
+        if (l) document.documentElement.lang = l;
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    .legal { max-width: 820px; }
+    .legal h2 { margin-top: 56px; scroll-margin-top: 96px; }
+    .legal h3 { margin-top: 32px; }
+    .legal ul { padding-left: 20px; color: var(--md-on-surface-variant); }
+    .legal li { margin-bottom: 8px; }
+    .legal table {
+      width: 100%; border-collapse: collapse; margin: 20px 0;
+      font-size: .9375rem;
+    }
+    .legal th, .legal td {
+      padding: 12px 14px; text-align: left;
+      border-bottom: 1px solid var(--md-outline-variant);
+    }
+    .legal th { color: var(--md-on-surface); font-weight: 600; }
+    .legal td { color: var(--md-on-surface-variant); }
+    .legal-updated { font-size: .875rem; }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="SEMS — home">
+        <span class="brand-mark" aria-hidden="true">⚡</span><span>SEMS</span>
+      </a>
+      <nav class="primary-nav" id="primaryNav" aria-label="Main"
+           data-i18n-attr="aria-label" data-i18n="a11y.nav">
+        <ul>
+          <li><a href="index.html#how" data-i18n="nav.how">How it works</a></li>
+          <li><a href="index.html#pricing" data-i18n="nav.plans">Plans</a></li>
+          <li><a href="index.html#faq" data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="langToggle" type="button"
+                aria-label="Switch language to Spanish"
+                data-i18n-attr="aria-label" data-i18n="a11y.lang">
+          <span aria-hidden="true">🌐</span><span data-lang-label>ES</span>
+        </button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-pressed="false"
+                aria-label="Switch to dark theme"
+                data-i18n-attr="aria-label" data-i18n="a11y.theme">
+          <span aria-hidden="true" data-theme-icon>🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section>
+      <div class="container legal">
+        <span class="kicker" data-i18n="legal.kicker">Legal</span>
+        <h1 data-i18n="legal.title">Terms and conditions</h1>
+        <p class="legal-updated" data-i18n="legal.updated">Last updated: September 2026 · Energix, Lima, Peru</p>
+
+        <p class="lead" data-i18n="legal.intro">
+          These terms govern the use of SEMS (Smart Energy Management System), a
+          service operated by Energix. By creating an account you accept them.
+        </p>
+
+        <h2 id="service" data-i18n="legal.s1.title">1. The service</h2>
+        <p data-i18n="legal.s1.p1">
+          SEMS receives electrical measurements from the meters you register,
+          assigns them to a site and a zone, applies the commercial tariff in force
+          and produces dashboards, alerts and bill forecasts.
+        </p>
+        <p data-i18n="legal.s1.p2">
+          SEMS is an informational tool. It does not operate, switch on or switch
+          off any equipment, and it does not replace the invoice issued by your
+          electricity distributor. Forecasts are estimates based on the data
+          received and on the published tariff schedule; the amount actually
+          billed is determined by your distributor.
+        </p>
+
+        <h2 id="accounts" data-i18n="legal.s2.title">2. Accounts and access</h2>
+        <ul>
+          <li data-i18n="legal.s2.l1">You are responsible for the accuracy of the data you register, in particular the tariff category and the contracted power of each site, because the calculations depend on them.</li>
+          <li data-i18n="legal.s2.l2">Access is granted per role and per site. The organization administrator decides who sees what.</li>
+          <li data-i18n="legal.s2.l3">You are responsible for keeping your credentials secret and for the activity carried out with them.</li>
+        </ul>
+
+        <h2 id="plans" data-i18n="legal.s3.title">3. Plans and payments</h2>
+        <p data-i18n="legal.s3.p1">
+          Plans are billed monthly and priced by the number of sites managed. The
+          Starter plan is free for a single site. You may change or cancel your
+          plan at any time; a cancellation takes effect at the end of the period
+          already paid for.
+        </p>
+        <p data-i18n="legal.s3.p2">
+          Payments are processed by an external payment provider. Card details are
+          entered on the provider's page and never reach SEMS servers: SEMS only
+          stores an identifier of the payment method.
+        </p>
+
+        <h2 id="privacy" data-i18n="legal.s4.title">4. Privacy policy</h2>
+        <p data-i18n="legal.s4.p1">
+          SEMS processes the data needed to render the service: identification of
+          the account and its users, the description of the organization, its sites
+          and zones, and the electrical measurements sent by the meters.
+        </p>
+        <ul>
+          <li data-i18n="legal.s4.l1">Passwords are never stored in plain text; only an irreversible hash is kept.</li>
+          <li data-i18n="legal.s4.l2">Consumption data belongs to the organization that produced it and is not sold or transferred to third parties.</li>
+          <li data-i18n="legal.s4.l3">You may request the deletion of your account and its data by writing to hello@energix.pe.</li>
+          <li data-i18n="legal.s4.l4">Processing follows Peruvian Law 29733 on the protection of personal data.</li>
+        </ul>
+
+        <h2 id="sla" data-i18n="legal.s5.title">5. Service level agreement</h2>
+        <p data-i18n="legal.s5.p1">
+          This section states the service levels Energix commits to for the paid
+          plans, and what happens when they are not met.
+        </p>
+
+        <table>
+          <caption class="sr-only" data-i18n="legal.s5.caption">Committed service levels by plan</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="legal.s5.h1">Commitment</th>
+              <th scope="col" data-i18n="legal.s5.h2">Business</th>
+              <th scope="col" data-i18n="legal.s5.h3">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" data-i18n="legal.s5.r1">Monthly availability of the platform</th>
+              <td>99.0%</td><td>99.5%</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="legal.s5.r2">Time to raise a demand alert after the reading</th>
+              <td data-i18n="legal.s5.r2b">under 60 seconds</td>
+              <td data-i18n="legal.s5.r2c">under 30 seconds</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="legal.s5.r3">First response to a support request</th>
+              <td data-i18n="legal.s5.r3b">2 business days</td>
+              <td data-i18n="legal.s5.r3c">4 business hours</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="legal.s5.r4">Consumption history retained</th>
+              <td data-i18n="legal.s5.r4b">12 months</td>
+              <td data-i18n="legal.s5.r4c">36 months</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p data-i18n="legal.s5.p2">
+          Availability is measured monthly over the API and the web application,
+          excluding maintenance windows announced at least 48 hours in advance. If
+          the committed availability is not met in a given month, the affected
+          customer may request a credit of 10% of that month's fee for each full
+          percentage point below the commitment, up to 50%.
+        </p>
+        <p data-i18n="legal.s5.p3">
+          The Starter plan is free and carries no service level commitment.
+        </p>
+
+        <h2 id="liability" data-i18n="legal.s6.title">6. Liability</h2>
+        <p data-i18n="legal.s6.p1">
+          Energix is not liable for decisions taken on the basis of the information
+          shown, nor for amounts billed by third parties, nor for interruptions
+          caused by the meters, the network or the customer's own infrastructure.
+        </p>
+
+        <h2 id="changes" data-i18n="legal.s7.title">7. Changes to these terms</h2>
+        <p data-i18n="legal.s7.p1">
+          Energix may update these terms. Any substantial change is announced by
+          email at least 30 days before it takes effect. Continuing to use the
+          service after that date means accepting the new version.
+        </p>
+
+        <h2 id="contact" data-i18n="legal.s8.title">8. Contact</h2>
+        <p data-i18n="legal.s8.p1">
+          Energix · Lima, Peru · hello@energix.pe
+        </p>
+
+        <p style="margin-top:48px">
+          <a class="btn btn-outlined" href="index.html" data-i18n="legal.back">Back to the home page</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p style="margin:0">© <span id="year">2026</span> Energix. <span data-i18n="footer.rights">All rights reserved.</span></p>
+        <p style="margin:0" data-i18n="footer.contact">Lima, Peru · hello@energix.pe</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/i18n.legal.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

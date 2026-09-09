@@ -1,8 +1,13 @@
-name: Deploy a GitHub Pages
+# Publishes the landing page to GitHub Pages.
+#
+# The site is plain HTML, CSS and JavaScript, so there is nothing to build:
+# the repository is uploaded exactly as it stands. That also means the page
+# can be opened straight from disk while developing.
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,26 +15,30 @@ permissions:
   pages: write
   id-token: write
 
+# Never run two deployments at once, and let a newer one wait rather than
+# cancel: cancelling mid-deploy can leave Pages serving a half-updated site.
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Build con Astro
-        uses: withastro/action@v3
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy a GitHub Pages
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
